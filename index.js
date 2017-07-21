@@ -8,18 +8,21 @@ function removeSlivers(cc, minAngle=1, minDistance=0.00001) {
     cosMinAngle = Math.cos(minAngle * Math.PI / 180);
     angles.set(minAngle, cosMinAngle)
   }
+  let len = cc.length;
+  if (len < 4) {
+    throw new Error('not enough points');
+  }
   // if the polygon is closed, remove the last vertex to simplify the loop below
   let isClosed = cc[0][0] === cc[cc.length - 1][0] && cc[0][0] === cc[cc.length - 1][0];
 
   if (!isClosed) {
-    cc.push([cc[0][0], cc[0][1]]);
+    throw new Error('polygon must be closed');
   }
 
   let i = 2;
   let a = cc[0];
   let b = cc[1];
   let c = cc[2];
-  let len = cc.length;
   let out = [a];
   while (i < len) {
 
@@ -65,10 +68,9 @@ function removeSlivers(cc, minAngle=1, minDistance=0.00001) {
     c = cc[++i];
   }
 
-  // if the polygon was originally closed, restore the last vertex
 
-  if (isClosed && out.length) {
-    out.push(out[0])
+  if (out.length === 1) {
+    throw new Error('entire polygon was a sliver, is this even possible?')
   }
 
   return out;
