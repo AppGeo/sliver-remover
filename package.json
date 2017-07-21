@@ -1,0 +1,23 @@
+{
+  "name": "sliver-remover",
+  "version": "1.0.0",
+  "description": "sliver-remover ====",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "babel-eslint": "^7.2.3"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AppGeo/sliver-remover.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AppGeo/sliver-remover/issues"
+  },
+  "homepage": "https://github.com/AppGeo/sliver-remover#readme"
+}
