@@ -23,7 +23,7 @@ function removeSlivers(cc, minAngle=1, minDistance=0.00001) {
   let a = cc[0];
   let b = cc[1];
   let c = cc[2];
-  let out = [a];
+  let out = false;
   while (i < len) {
 
     let bax = a[0] - b[0];
@@ -35,6 +35,7 @@ function removeSlivers(cc, minAngle=1, minDistance=0.00001) {
     // previous angle
 
     if (dba <= minDistance) {
+      out = cc.slice(0, i - 1)
       b = c;
       c = cc[++i];
       continue;
@@ -57,21 +58,24 @@ function removeSlivers(cc, minAngle=1, minDistance=0.00001) {
 
       if (cos >= cosMinAngle) {
         b = c;
+        out = cc.slice(0, i - 1)
         c = cc[++i];
         continue;
       }
     }
-
-    out.push(b);
+    if (out) {
+      out.push(b);
+    }
     a = b;
     b = c;
     c = cc[++i];
   }
 
 
-  if (out.length === 1) {
-    throw new Error('entire polygon was a sliver, is this even possible?')
+  if (out) {
+    return out;
+  } else {
+    return cc;
   }
 
-  return out;
 }
