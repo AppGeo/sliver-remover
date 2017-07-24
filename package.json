@@ -8,9 +8,7 @@
   },
   "author": "",
   "license": "MIT",
-  "dependencies": {
-    "babel-eslint": "^7.2.3"
-  },
+  "dependencies": {},
   "devDependencies": {},
   "repository": {
     "type": "git",
